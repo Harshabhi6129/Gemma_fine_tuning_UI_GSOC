@@ -70,25 +70,25 @@ The primary objective is to create a user interface that supports fine-tuning Go
 
 Building upon the core foundation, the project will evolve into a general-purpose training interface that:
 
-### 🧠 Allows Users To:
+### Allows Users To:
 - Upload their dataset.
-- Select a problem type: classification, regression, text generation.
+- Select a problem type: classification, regression, text generation (any problem statement).
 - Choose ML/DL algorithms: Random Forests, SVM, XGBoost, CNNs, RNNs, LSTMs, or Transformers.
 - Select a target variable and relevant features.
 - Specify training config (cross-validation, metrics, loss functions).
 
-### 📊 Offers:
+### Offers:
 - Real-time training logs and metric updates.
 - Visualization of confusion matrices, ROC curves, F1-score graphs, and loss curves.
 - Downloadable reports of metrics and plots.
 - Export trained model weights and configuration.
 
-### 🧰 Technologies Used
+### Technologies Used
 - `scikit-learn`, `XGBoost`, `TensorFlow`, `PyTorch`, `transformers`
 - `matplotlib`, `seaborn`, and Streamlit charts for visuals
 - GCS for storage, Vertex AI for cloud training jobs
 
-### 🎓 Designed For:
+### Designed For:
 - Students and educators who want to run experiments easily.
 - Beginners learning ML through play.
 - Researchers quickly validating hypotheses.
