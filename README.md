@@ -1,54 +1,95 @@
 # Google Summer of Code 2025 Proposal
 
 ## Personal Information
-- **Name**: Harsha Abhinav Kusampudi 
+- **Name**: Harsha Abhinav Kusampudi
 - **Email**: harshakusampudi@gmail.com
 - **GitHub Profile**: Harshabhi6129 
 - **University**: University at Buffalo  
 - **Degree Program**: MS in Computer Science  
-  
+ 
 
 ---
 
 ## Title:  
-**Gemma & Beyond: A No-Code Fine-tuning and Machine Learning Training Interface for Everyone**
+**Gemma Fine-Tuning Interface: Developer Tools and Public Usability for Open Models**
 
 ---
 
 ## Synopsis
 
-This project aims to build an intuitive, extensible, and open-source Streamlit/Gradio-based interface for training and fine-tuning machine learning models — from large pre-trained language models like Gemma to classical ML/DL models like Random Forests, Logistic Regression, or CNNs. Users can upload datasets, describe their problem using prompts, select the task type (classification, regression, or text generation), and configure hyperparameters and evaluation strategies — all within a user-friendly UI. It will offer training progress visualization, evaluation metrics (e.g., F1, accuracy, loss curves), and integration with Google Cloud (GCS + Vertex AI) for scalable, production-grade training.
+This project proposes the development of a full-featured, professional-grade UI for fine-tuning and evaluating open models from the Gemma family. The interface will be built using Streamlit and HuggingFace, supporting dataset upload, hyperparameter configuration, training visualization, and export functionality. The application will also integrate with Google Cloud (GCS for storage and Vertex AI for scalable training) as outlined in the Google DeepMind GSoC project brief.
 
-This platform will democratize model experimentation, making powerful AI tooling accessible to students, educators, and non-coders.
-
----
-
-## Benefits to the Community
-
-- **Educational Access**: Students can learn ML/DL and LLM fine-tuning by experimenting with real datasets and algorithms — no coding needed.
-- **Open-Source Ecosystem**: Builds tools around Gemma and other public models, strengthening the open-source ML community.
-- **Scalable Training via Google Cloud**: By integrating with GCS and Vertex AI, users can transition from local demos to real cloud-based training.
-- **No-Code Experimentation**: Greatly reduces the barrier to entry for experimenting with fine-tuning and ML pipelines.
+In the second phase of the project, we propose expanding this platform into a powerful public-use application for training and comparing machine learning and deep learning models. With no-code access to tools for classification, regression, text modeling, and more, this system will empower students and non-programmers to learn and explore ML by example.
 
 ---
 
-## Deliverables
+## Part I: Implementation of the Gemma Fine-Tuning UI (Core Scope)
 
-### 📦 Core Features
-- Upload tabular or textual datasets
-- Select task: classification, regression, or text generation
-- Automatic parsing and validation of columns
-- Auto-suggest ML/DL algorithms based on the dataset
-- Configure training: hyperparameters, loss, metrics, and cross-validation
-- Train models using `scikit-learn`, `PyTorch`, `TensorFlow`, or HuggingFace
-- Real-time visualization of training progress
-- Final report of evaluation metrics and plots
-- Export trained model + logs + metrics
+The primary objective is to create a user interface that supports fine-tuning Google’s Gemma models. This includes:
 
-### 🌐 Advanced Features
-- Support fine-tuning Gemma models using HuggingFace + Vertex AI
-- Google Cloud Storage (GCS) integration for dataset/model upload
-- Vertex AI backend for scalable training of larger models
+### 1. Dataset Upload and Validation
+- Users can upload datasets in CSV, JSONL, or TXT formats.
+- App validates file structure and schema (requires `input` and `output` columns).
+- Sample previews and automatic data checks are provided.
+
+### 2. Hyperparameter Configuration
+- Interface to select learning rate, batch size, number of epochs.
+- Tooltips for each parameter help educate the user.
+- Smart defaults and input validation.
+
+### 3. Prompt-based Testing
+- Before training, the user can test the base model’s performance using custom prompts.
+- HuggingFace pipelines (`text-generation`) provide this functionality.
+
+### 4. Simulated Training Phase
+- In the demo phase, the app simulates training progress with dummy metrics and visualizations.
+- Real-time feedback loop through Streamlit progress bars and Matplotlib loss plots.
+
+### 5. Actual Fine-tuning (Planned for Full Phase)
+- Using HuggingFace’s `Trainer` API and LoRA-based fine-tuning for Gemma.
+- Tokenization, training loop, checkpoint saving, and evaluation using built-in trainer support.
+
+### 6. Model Export and Inference
+- Save fine-tuned model locally or to cloud storage (in formats like PyTorch `.bin`, TensorFlow SavedModel, or GGUF).
+- Provide endpoint or download button for inference.
+
+### 7. Google Cloud Integration
+- Connect to Google Cloud Storage for uploading large datasets and saving checkpoints.
+- Vertex AI backend integration for distributed training and TPU/GPU acceleration.
+
+### Outcome
+- A working demo with the full fine-tuning pipeline of Gemma models.
+- Integrated cloud support for scale.
+- Ready-to-use UI with documentation and tutorials.
+
+---
+
+## Part II: Generalizing into a Public ML/DL Training Platform
+
+Building upon the core foundation, the project will evolve into a general-purpose training interface that:
+
+### 🧠 Allows Users To:
+- Upload their dataset.
+- Select a problem type: classification, regression, text generation.
+- Choose ML/DL algorithms: Random Forests, SVM, XGBoost, CNNs, RNNs, LSTMs, or Transformers.
+- Select a target variable and relevant features.
+- Specify training config (cross-validation, metrics, loss functions).
+
+### 📊 Offers:
+- Real-time training logs and metric updates.
+- Visualization of confusion matrices, ROC curves, F1-score graphs, and loss curves.
+- Downloadable reports of metrics and plots.
+- Export trained model weights and configuration.
+
+### 🧰 Technologies Used
+- `scikit-learn`, `XGBoost`, `TensorFlow`, `PyTorch`, `transformers`
+- `matplotlib`, `seaborn`, and Streamlit charts for visuals
+- GCS for storage, Vertex AI for cloud training jobs
+
+### 🎓 Designed For:
+- Students and educators who want to run experiments easily.
+- Beginners learning ML through play.
+- Researchers quickly validating hypotheses.
 
 ---
 
@@ -56,57 +97,55 @@ This platform will democratize model experimentation, making powerful AI tooling
 
 | Period | Deliverables |
 |--------|--------------|
-| **Community Bonding** | Interact with mentors, finalize technical stack, gather feedback on architecture. Deploy demo on HuggingFace Spaces / Streamlit Cloud. |
-| **Week 1–2** | Modularize Streamlit app: UI components for data upload, task selection, prompt interface, and evaluation config |
-| **Week 3–4** | Add classic ML model training (Logistic Regression, Random Forest, XGBoost, etc.) with sklearn and visual metric tracking |
-| **Week 5–6** | Integrate deep learning models (CNNs, LSTMs, etc.) using TensorFlow/PyTorch |
-| **Week 7–8** | Add Gemma fine-tuning via HuggingFace `Trainer` API (local) with real-time evaluation and model download |
-| **Midterm Evaluation** | Complete working pipeline for local training: classification/regression + Gemma fine-tuning. Deployed demo. |
-| **Week 9–10** | Add cloud-based GCS upload, checkpoint storage, and Vertex AI backend for scalable training |
-| **Week 11–12** | Add detailed evaluation reports and performance graphs (loss, accuracy, confusion matrix, etc.) |
-| **Final 2 weeks** | Code polish, testing, error handling, documentation. Write tutorials and notebooks. Publish on GitHub + Google Cloud. |
+| **Community Bonding** | Finalize architecture, cloud integration plan, connect with mentors, deploy prototype on Streamlit Cloud |
+| **Week 1–2** | Implement data upload + validation module; test dataset schemas and formats |
+| **Week 3–4** | Add hyperparameter configuration UI + prompt-based text generation module |
+| **Week 5–6** | Simulated training loop with loss visualization and tokenized sample previews |
+| **Week 7–8** | Integrate HuggingFace `Trainer` for real fine-tuning of Gemma models |
+| **Midterm Evaluation** | Complete Gemma fine-tuning pipeline + testing suite + documentation |
+| **Week 9–10** | Add ML/DL generalization: support scikit-learn models, classification/regression pipelines |
+| **Week 11–12** | Implement metric visualizations and model comparison dashboard |
+| **Final 2 Weeks** | Cloud deployment (Vertex AI + GCS), model export, user docs, tutorial notebooks, and final polish |
 
 ---
 
 ## Technical Details
 
-- **Frontend**: Streamlit (core), Gradio (for possible deployment UI)
-- **ML Training**: `scikit-learn`, `TensorFlow`, `PyTorch`, `transformers`
-- **Text Fine-tuning**: HuggingFace Transformers + Gemma + `Trainer` API
-- **Data Handling**: Pandas, NumPy, Tokenizers
-- **Visualization**: Matplotlib, Seaborn, Streamlit charts
-- **Cloud**: Google Cloud Storage for datasets/models, Vertex AI for cloud-based model training
-- **Deployment**: Streamlit Cloud, HuggingFace Spaces, optional Docker
+- **Frontend**: Streamlit (core), optional Gradio for hosted demos
+- **Model APIs**: `transformers`, `scikit-learn`, `xgboost`, `tensorflow`, `torch`
+- **Cloud**: Google Cloud Storage, Vertex AI Pipelines or Training APIs
+- **Evaluation**: Accuracy, F1-score, Precision, Recall, ROC, Log Loss
+- **Visuals**: Matplotlib, Seaborn, Streamlit charts
 
 ---
 
 ## Future Scope
 
-- Add AutoML tab: suggest best model for dataset
-- Integrate LLM Agents to auto-configure tasks and parameters
-- Add experiment tracking (e.g., with Weights & Biases or MLflow)
-- Support multiple users and team collaboration
-- Launch as a full web service for public access
+- AutoML-style recommendation engine for model type
+- Natural language agent to auto-configure pipelines
+- Multi-user support with login/session history
+- Public demo deployment with HuggingFace Spaces or Firebase hosting
+- Reusable components for other open model projects
 
 ---
 
 ## GitHub Repo (Demo Link)
 
-🔗 [GitHub Repository – Gemma Fine-Tuning UI (Demo)](https://github.com/yourusername/gemma-finetune-ui-demo) *(Upload your files here and update this link)*
+🔗 [GitHub Repository – Gemma Fine-Tuning UI (Demo)](https://github.com/yourusername/gemma-finetune-ui-demo) *(replace with actual link)*
 
 ---
 
 ## Why Me?
 
-- MS in CS, focused on AI and ML systems
-- Strong foundation in Python, ML/DL, Streamlit, and HuggingFace
-- Passionate about education and accessibility in AI
-- Experienced in building no-code tools and visually intuitive apps
-- Already built and deployed a working demo version of this project, which will serve as the foundation
+- Pursuing MS in CS, focused on AI systems
+- Strong in Python, ML/DL pipelines, visualization, and frontend tools like Streamlit
+- Passionate about making machine learning accessible and visual
+- Already implemented and demoed a partial version of the project
+- Experienced in both open-source contribution and technical writing
 
 ---
 
 ## License
 
-This project will be released under the Apache 2.0 license to maximize compatibility with other open-source AI projects, including Google's Gemma.
+Apache 2.0 — to align with Google's open-source model policy and maximize public usability
 
