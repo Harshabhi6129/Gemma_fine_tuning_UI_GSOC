@@ -133,7 +133,7 @@ Building upon the core foundation, the project will evolve into a general-purpos
 
 ## GitHub Repo (Demo Link)
 
-🔗 [GitHub Repository – Gemma Fine-Tuning UI (Demo)]([https://github.com/yourusername/gemma-finetune-ui-demo](https://github.com/Harshabhi6129/Gemma_fine_tuning_UI_GSOC/tree/main))
+🔗 [GitHub Repository – Gemma Fine-Tuning UI (Demo)](https://github.com/Harshabhi6129/Gemma_fine_tuning_UI_GSOC/tree/main))
 
 ---
 
