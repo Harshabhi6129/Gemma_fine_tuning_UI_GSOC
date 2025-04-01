@@ -93,14 +93,14 @@ if st.button("Start Simulated Training"):
         ax.set_title("Training Loss Visualization")
         st.pyplot(fig)
 
-        st.subheader("🔢 Tokenized Input Preview")
+        st.subheader("Tokenized Input Preview")
         tokens = tokenizer(df['input'][0], return_tensors="pt")
         token_ids = tokens.input_ids.tolist()
         st.json(token_ids)
 
 # Decode and show the readable version
         decoded_text = tokenizer.decode(token_ids[0])
-        st.subheader("📝 Decoded Text from Tokens")
+        st.subheader("Decoded Text from Tokens")
         st.code(decoded_text)
 
     else:
